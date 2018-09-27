@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<style>
+.counties :hover {
+  fill: red;
+}
+
+.county-borders {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+</style>
+<html lang="en">
+<svg width="960" height="800"></svg>
+<head>
+    <meta charset="utf-8">
+        <title>Congress Data</title>
+        <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>    
+        </style>
+        <script src="https://d3js.org/topojson.v2.min.js"></script>
+        <script src="codes.json"></script>
+          <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,700" rel="stylesheet">
+        <script src="state_codes.json"></script>
+</head>
+<body>
+    <script type="text/javascript">     
+
+    var width = 700;
+    var height = 800;
+    var data = []
+
+    var i = 0 
+    var year = 1995
+    var month = 0
+
+
+     var scale = d3.scaleLinear().domain([0,10])
+    .interpolate(d3.interpolateLab)
+    .range(['white', 'red']);
+
+    /////// DATA TRANSITION ///////////////////////////////
+    function trans(g,y, m){
+      
+      g.selectAll('text').transition().text(function(d,i){
+        if (i==1){
+          return(String(month)+'-'+String(year))
+        }
+        else{return 'US Unemployment Rate'}
+      })
+
+      g.selectAll('path')
+      .transition()
+      .attr('fill',function(d){
+        try{
+          debugger;
+          return(scale(data_stream[String(y)][m][d.id.slice(0,2)][d.id].value))}
+        //return(scale(data_stream[String(y)][m][d.id.slice(0,2)].filter(k=>k.series_id==d.id)[0].value))}
+
+        catch(err){
+          return('gainsboro')
+        }})
+    }
+
+
+    /////// LOADING DATA ////////////////////////////////////
+    codes.forEach(k=>{
+      if (k.Code < 10000){
+        k.Code = '0'+String(k.Code)
+      }
+      else{
+        k.Code = String(k.Code)
+      }
+      k.County = k.County.split('[')[0]
+    })
+
+    var ids = []
+
+    var data_stream = {}
+    
+    d3.csv('test2.csv', d=>{
+      d.forEach(k=>{
+     // debugger;
+     delete k.footnote_codes
+     delete k.len
+      k.series_id = k.series_id.slice(5,10)
+      if(ids.includes(k.series_id) == false ){
+        ids.push(k.series_id)
+      }
+       if (data_stream[k.year] == null){
+          data_stream[k.year] = {}
+       }
+        if (data_stream[k.year][k.period] == null){
+        data_stream[k.year][k.period] = {}
+      }
+
+      if  (data_stream[k.year][k.period][k.series_id.slice(0,2)] == null){
+        data_stream[k.year][k.period][k.series_id.slice(0,2)] = {}
+      }
+      data_stream[k.year][k.period][k.series_id.slice(0,2)][k.series_id]=k
+      data.push(k)    
+      })
+      
+
+      drawMap()
+      //debugger;
+    })
+    //////// LOADING DATA /////////////////////////
+
+    //////// DRAWING MAP //////////////////////////
+
+    function drawMap(){ 
+    
+    var svg = d3.select("svg");
+
+    var path = d3.geoPath();
+
+    d3.json("https://d3js.org/us-10m.v1.json", function(error, us) {
+    if (error) throw error;
+  
+    var g = svg.append('g')
+      
+      g.selectAll('text')
+       .data(['USA Unemployment Rate',''])
+       .enter()
+       .append('text')
+       .text(function(d){return d})
+       .attr('x',400)
+       .attr('y',function(d,i){return 35*i})
+       .attr('font-size',30)
+       .attr('font-family','Heebo')
+       
+
+      g
+      .attr('transform','translate(0,100)')
+      .selectAll("path")
+      .data(topojson.feature(us, us.objects.counties).features)
+      .enter().append("path")
+      .attr("d", path)
+      .attr('fill',function(p){
+        try {
+          debugger;
+        return(
+        //  scale(data_stream['1995']['M01'][p.id.slice(0,2)].filter(k=>k.series_id==p.id)[0].value)
+
+
+        scale(data_stream['1995']['M01'][p.id.slice(0,2)][p.id].value)
+
+          //scale(data.filter(k=>k.series_id == p.id)[0].value)
+          )
+        }
+        catch(err) {
+        return('gainsboro')
+        }}
+      )
+      .on('click',function(){
+        var last_el = 0
+        var t = d3.timer(function(el){
+          if(year==2015){t.stop()}
+          else if(el - last_el>25){
+            last_el = el
+            if (month==12){
+          year++
+          month = 1
+        }
+          else{month++}
+      if (month<10){
+        trans(g,String(year),'M0'+String(month))}
+      else{
+        trans(g,String(year),'M'+String(month))}
+          }
+        }) })   
+
+    ////////////// DRAWING MAP //////////////////////////
+
+    g.append("path")
+        .attr("class", "county-borders")
+        .attr("d", path(topojson.mesh(us, us.objects.counties, function(a, b) { return a !== b; })));
+  })}
+
+  
+
+
+    </script>
+</body>
+</html>

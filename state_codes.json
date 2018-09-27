@@ -1,0 +1,277 @@
+var statecode = [
+  {
+    "StateCode": "AK",
+    "FIPS": "02",
+    "StateName": "ALASKA"
+  },
+  {
+    "StateCode": "AL",
+    "FIPS": "01",
+    "StateName": "ALABAMA"
+  },
+  {
+    "StateCode": "AR",
+    "FIPS": "05",
+    "StateName": "ARKANSAS"
+  },
+  {
+    "StateCode": "AS",
+    "FIPS": 60,
+    "StateName": "AMERICAN SAMOA"
+  },
+  {
+    "StateCode": "AZ",
+    "FIPS": "04",
+    "StateName": "ARIZONA"
+  },
+  {
+    "StateCode": "CA",
+    "FIPS": "06",
+    "StateName": "CALIFORNIA"
+  },
+  {
+    "StateCode": "CO",
+    "FIPS": "08",
+    "StateName": "COLORADO"
+  },
+  {
+    "StateCode": "CT",
+    "FIPS": "09",
+    "StateName": "CONNECTICUT"
+  },
+  {
+    "StateCode": "DC",
+    "FIPS": 11,
+    "StateName": "DISTRICT OF COLUMBIA"
+  },
+  {
+    "StateCode": "DE",
+    "FIPS": 10,
+    "StateName": "DELAWARE"
+  },
+  {
+    "StateCode": "FL",
+    "FIPS": 12,
+    "StateName": "FLORIDA"
+  },
+  {
+    "StateCode": "GA",
+    "FIPS": 13,
+    "StateName": "GEORGIA"
+  },
+  {
+    "StateCode": "GU",
+    "FIPS": 66,
+    "StateName": "GUAM"
+  },
+  {
+    "StateCode": "HI",
+    "FIPS": 15,
+    "StateName": "HAWAII"
+  },
+  {
+    "StateCode": "IA",
+    "FIPS": 19,
+    "StateName": "IOWA"
+  },
+  {
+    "StateCode": "ID",
+    "FIPS": 16,
+    "StateName": "IDAHO"
+  },
+  {
+    "StateCode": "IL",
+    "FIPS": 17,
+    "StateName": "ILLINOIS"
+  },
+  {
+    "StateCode": "IN",
+    "FIPS": 18,
+    "StateName": "INDIANA"
+  },
+  {
+    "StateCode": "KS",
+    "FIPS": 20,
+    "StateName": "KANSAS"
+  },
+  {
+    "StateCode": "KY",
+    "FIPS": 21,
+    "StateName": "KENTUCKY"
+  },
+  {
+    "StateCode": "LA",
+    "FIPS": 22,
+    "StateName": "LOUISIANA"
+  },
+  {
+    "StateCode": "MA",
+    "FIPS": 25,
+    "StateName": "MASSACHUSETTS"
+  },
+  {
+    "StateCode": "MD",
+    "FIPS": 24,
+    "StateName": "MARYLAND"
+  },
+  {
+    "StateCode": "ME",
+    "FIPS": 23,
+    "StateName": "MAINE"
+  },
+  {
+    "StateCode": "MI",
+    "FIPS": 26,
+    "StateName": "MICHIGAN"
+  },
+  {
+    "StateCode": "MN",
+    "FIPS": 27,
+    "StateName": "MINNESOTA"
+  },
+  {
+    "StateCode": "MO",
+    "FIPS": 29,
+    "StateName": "MISSOURI"
+  },
+  {
+    "StateCode": "MS",
+    "FIPS": 28,
+    "StateName": "MISSISSIPPI"
+  },
+  {
+    "StateCode": "MT",
+    "FIPS": 30,
+    "StateName": "MONTANA"
+  },
+  {
+    "StateCode": "NC",
+    "FIPS": 37,
+    "StateName": "NORTH CAROLINA"
+  },
+  {
+    "StateCode": "ND",
+    "FIPS": 38,
+    "StateName": "NORTH DAKOTA"
+  },
+  {
+    "StateCode": "NE",
+    "FIPS": 31,
+    "StateName": "NEBRASKA"
+  },
+  {
+    "StateCode": "NH",
+    "FIPS": 33,
+    "StateName": "NEW HAMPSHIRE"
+  },
+  {
+    "StateCode": "NJ",
+    "FIPS": 34,
+    "StateName": "NEW JERSEY"
+  },
+  {
+    "StateCode": "NM",
+    "FIPS": 35,
+    "StateName": "NEW MEXICO"
+  },
+  {
+    "StateCode": "NV",
+    "FIPS": 32,
+    "StateName": "NEVADA"
+  },
+  {
+    "StateCode": "NY",
+    "FIPS": 36,
+    "StateName": "NEW YORK"
+  },
+  {
+    "StateCode": "OH",
+    "FIPS": 39,
+    "StateName": "OHIO"
+  },
+  {
+    "StateCode": "OK",
+    "FIPS": 40,
+    "StateName": "OKLAHOMA"
+  },
+  {
+    "StateCode": "OR",
+    "FIPS": 41,
+    "StateName": "OREGON"
+  },
+  {
+    "StateCode": "PA",
+    "FIPS": 42,
+    "StateName": "PENNSYLVANIA"
+  },
+  {
+    "StateCode": "PR",
+    "FIPS": 72,
+    "StateName": "PUERTO RICO"
+  },
+  {
+    "StateCode": "RI",
+    "FIPS": 44,
+    "StateName": "RHODE ISLAND"
+  },
+  {
+    "StateCode": "SC",
+    "FIPS": 45,
+    "StateName": "SOUTH CAROLINA"
+  },
+  {
+    "StateCode": "SD",
+    "FIPS": 46,
+    "StateName": "SOUTH DAKOTA"
+  },
+  {
+    "StateCode": "TN",
+    "FIPS": 47,
+    "StateName": "TENNESSEE"
+  },
+  {
+    "StateCode": "TX",
+    "FIPS": 48,
+    "StateName": "TEXAS"
+  },
+  {
+    "StateCode": "UT",
+    "FIPS": 49,
+    "StateName": "UTAH"
+  },
+  {
+    "StateCode": "VA",
+    "FIPS": 51,
+    "StateName": "VIRGINIA"
+  },
+  {
+    "StateCode": "VI",
+    "FIPS": 78,
+    "StateName": "VIRGIN ISLANDS"
+  },
+  {
+    "StateCode": "VT",
+    "FIPS": 50,
+    "StateName": "VERMONT"
+  },
+  {
+    "StateCode": "WA",
+    "FIPS": 53,
+    "StateName": "WASHINGTON"
+  },
+  {
+    "StateCode": "WI",
+    "FIPS": 55,
+    "StateName": "WISCONSIN"
+  },
+  {
+    "StateCode": "WV",
+    "FIPS": 54,
+    "StateName": "WEST VIRGINIA"
+  },
+  {
+    "StateCode": "WY",
+    "FIPS": 56,
+    "StateName": "WYOMING"
+  }
+]
